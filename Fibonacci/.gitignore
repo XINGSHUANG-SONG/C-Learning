@@ -1,0 +1,19 @@
+# Compiled programs
+*.exe
+*.out
+
+# Object files
+*.o
+*.obj
+
+# Debug information
+*.pdb
+
+# Visual Studio files
+.vs/
+Debug/
+Release/
+x64/
+
+# Optional local VS Code settings
+# .vscode/
