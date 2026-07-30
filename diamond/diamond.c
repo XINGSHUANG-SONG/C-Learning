@@ -1,34 +1,36 @@
 #include <stdio.h>
 
 int print_diamond(int n, char m){
-    if(n % 2 == 0){
-        printf("Invlid input.");
+    if(n <= 0 || n % 2 == 0){
+        printf("Invalid input.\n");
         return 1;
     }
-    for(int i = 1; i <= n; i++){
+    int i = 1;
+    int left, right;
+    for(; i <= n; i++){
         if(i <= (n + 1) / 2){
-            int floor = (n + 1) / 2 - i + 1;
-            int ceil = n - (n + 1) / 2 + i;
-            for(int j = floor; j <= ceil; j++){
-                if(floor > 1 && j < floor + 1){
-                    for(int count = 1;count < floor;count++){
-                        printf(" \t");
+            left = (n + 1) / 2 - i + 1;
+            right = n - (n + 1) / 2 + i;
+            for(int j = left; j <= right; j++){
+                if(left > 1 && j == left){
+                    for(int count = 1;count < left;count++){
+                        printf("       ");
                     }
                 };
-                printf("%c\t", m);
-                if(j == ceil)printf("\n");
+                printf("%c      ", m);
+                if(j == right)printf("\n");
             }
         }else if(i > (n + 1) / 2){
-            int floor = i - (n + 1) / 2 + 1;
-            int ceil = n - i + (n + 1) / 2;
-            for(int j = floor; j <= ceil; j++){
-                if(floor > 1 && j < floor + 1){
-                    for(int count = 1;count < floor;count++){
-                        printf(" \t");
+            left = i - (n + 1) / 2 + 1;
+            right = n - i + (n + 1) / 2;
+            for(int j = left; j <= right; j++){
+                if(left > 1 && j == left){
+                    for(int count = 1;count < left;count++){
+                        printf("       ");
                     }
-                };
-                printf("%c\t", m);
-                if(j == ceil)printf("\n");
+                }
+                printf("%c      ", m);
+                if(j == right)printf("\n");
             }
         }
     }
@@ -38,8 +40,7 @@ int print_diamond(int n, char m){
 int main(void){
     int n;
     char m;
-    scanf("%d", &n);
-    scanf("%c", &m);
+    scanf("%d %c", &n, &m);
     print_diamond(n, m);
     return 0;
 }
