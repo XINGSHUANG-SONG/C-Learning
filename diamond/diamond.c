@@ -15,12 +15,10 @@ int print_diamond(int n, char m){
             left = i - (n + 1) / 2 + 1;
             right = n - i + (n + 1) / 2;
         }
+        for(int count = 1;count < left;count++){
+            printf("       ");
+        }
         for(int j = left; j <= right; j++){
-            if(left > 1 && j == left){
-                for(int count = 1;count < left;count++){
-                    printf("       ");
-                }
-            }
             printf("%c      ", m);
             if(j == right)printf("\n");
         }
