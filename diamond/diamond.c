@@ -1,35 +1,38 @@
 #include <stdio.h>
 
-int print_diamond(int n, char m){
-    if(n <= 0 || n % 2 == 0){
-        printf("Invalid input.\n");
-        return 1;
-    }
-    int i = 1;
-    int left, right;
-    for(; i <= n; i++){
-        if(i <= (n + 1) / 2){
-            left = (n + 1) / 2 - i + 1;
-            right = n - (n + 1) / 2 + i;
+void print_diamond(int n, char ch){
+    int middle = (n + 1) / 2;
+    for(int i = 1; i <= n; i++){
+        int left, right;    //放在循环里，缩小变量作用域
+        if(i <= middle){
+            left = middle - i + 1;
+            right = n - middle + i;
         }else{
-            left = i - (n + 1) / 2 + 1;
-            right = n - i + (n + 1) / 2;
+            left = i - middle + 1;
+            right = n - i + middle;
         }
         for(int count = 1;count < left;count++){
-            printf("       ");
+            printf("  ");
         }
         for(int j = left; j <= right; j++){
-            printf("%c      ", m);
-            if(j == right)printf("\n");
+            printf("%c", ch);
+            if(j < right)printf(" ");
         }
+        printf("\n");       //每一行结束都要换行
     }
-    return 0;
 }
 
 int main(void){
     int n;
-    char m;
-    scanf("%d %c", &n, &m);
-    print_diamond(n, m);
+    char ch;
+    if(scanf("%d %c", &n, &ch) != 2){
+        printf("Invalid input.\n");
+        return 1;
+    }
+    if(n <= 0 || n % 2 == 0){
+        printf("Must be a positive odd integer.\n");
+        return 1;
+    }
+    print_diamond(n, ch);
     return 0;
 }
