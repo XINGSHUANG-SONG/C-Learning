@@ -82,7 +82,7 @@ int main(void){
     struct rational e = make_rational(1,-2);
     struct rational f = make_rational(-6,8);
     struct rational g = make_rational(-6,-8);
-
+    
     print_rational(e);
     print_rational(f);
     print_rational(g);
