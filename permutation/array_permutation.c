@@ -3,10 +3,10 @@
 
 int a[N];
 
-void permutation(int start)
+void permutation(int start, int M)
 {
-    if (start == N - 1) {   /* 已经到最后一个位置 */
-        for(int i = 0; i < N; i++)  /* 打印数组 */
+    if (start == M) {   /* 已经到最后一个位置 */
+        for(int i = 0; i < M; i++)  /* 打印数组 */
         {
             printf("%d", a[i]);
             printf(" ");
@@ -21,7 +21,7 @@ void permutation(int start)
         a[start] = a[i];
         a[i] = temp1;
         /* 递归处理下一个位置 */
-        permutation(start + 1);
+        permutation(start + 1, M);
         /* 交换回来 */
         int temp2 = a[start];
         a[start] = a[i];
@@ -30,11 +30,15 @@ void permutation(int start)
 }
 
 int main(void){
-    int start = 0;
+    int start = 0, M;
+    if(scanf("%d", &M) != 1 || M > N || M <= 0){
+        printf("Invalid input.\n");
+        return 1;
+    }
     for(int i = 0; i < N; i++)
     {
         a[i] = i + 1;
     }
-    permutation(start);
+    permutation(start, M);
     return 0;
 }
