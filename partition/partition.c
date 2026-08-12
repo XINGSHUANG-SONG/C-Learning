@@ -5,12 +5,10 @@ int a[N] = {4, 6, 8, 10, 2, 4, 9};
 
 int partition(int start, int end)
 {
-	// 从a[start..end]中选取一个pivot元素（比如选a[start]为pivot）;
-    int i = start, j = end, k = 0, mid;
-    int pivot = a[i];
-	// 在一个循环中移动a[start..end]的数据，将a[start..end]分成两半，
+    int i = start + 1, j = end;
+    int pivot = a[start];
     while (i <= j) {
-        if (a[i] < pivot && i > 0) {
+        if (a[i] < pivot) {
             int temp = a[i];
             a[i] = pivot;
             a[i - 1] = temp;
@@ -24,9 +22,7 @@ int partition(int start, int end)
             i++;
         }
     }
-    mid = i - 1;
-	// 使a[start..mid-1]比pivot元素小，a[mid+1..end]比pivot元素大，而a[mid]就是pivot元素;
-	return mid;
+	return i - 1;
 }
 
 void quicksort(int start, int end)
