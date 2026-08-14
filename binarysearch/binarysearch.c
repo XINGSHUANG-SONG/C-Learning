@@ -14,16 +14,9 @@ int binarysearch(int number)
         } else if (a[mid] > number) {
 			end = mid - 1;
         } else {
-            if (mid > 0 && a[mid - 1] == a[mid]) {
-                for (int i = mid - 1; i >= 0; i--) {
-                    if (a[i] != a[mid])
-                        return i + 1;
-                    else 
-                        if (i == 0) 
-                            return i;
-                }
-            }
-			return mid;
+            if (mid == 0 || a[mid - 1] != a[mid])
+				return mid;
+			end = mid - 1;
         }    
 	}
 	return -1;
