@@ -1,23 +1,20 @@
 #include <stdio.h>
 
-double mypow(double x, int n){
-    int even_count = 0, power = n;
-    double base = 1.0, copy = x;
-    if (x == 0 || x == 1)
+double mypow(double x, int n)
+{
+    double result = 1.0;
+    double base = x;
+    int power = n;
+
+    if (power <= 1)
         return x;
-    while (power > 1) {
-        if (power % 2 == 1) {//处理特殊的情况
-            base *= copy;
-            power += 1;
-        }
-        power /= 2;
-        even_count++;
-        copy *= copy;
-    }
-    for (int i = 0; i < even_count; i++)
-        x *= x;
-    x /= base;
-    return x;
+    if (power % 2 == 1)
+        result *= base;
+
+    base *= base;
+    power /= 2;
+
+    return  result * mypow(base, power);
 }
 
 int main(void){
