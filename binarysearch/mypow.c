@@ -2,22 +2,17 @@
 
 double mypow(double x, int n){
     int even_count = 0, power = n;
-    double base = 1.0, copy;
+    double base = 1.0, copy = x;
     if (x == 0 || x == 1)
         return x;
     while (power > 1) {
-        if (power % 2 == 0) {
-            power /= 2;
-            even_count++;
-        } else {
+        if (power % 2 == 1) {//处理特殊的情况
+            base *= copy;
             power += 1;
-            power /= 2;
-            even_count++;
-            copy = x;
-            for (int i = 1; i < even_count; i++)
-                copy *= copy;
-            base = base * copy;            
         }
+        power /= 2;
+        even_count++;
+        copy *= copy;
     }
     for (int i = 0; i < even_count; i++)
         x *= x;
