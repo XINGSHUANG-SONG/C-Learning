@@ -15,10 +15,11 @@ int binarysearch(void *d[], int num, const void *key, cmp_t cmp){
     int start = 0, end = num;
     int mid;
     while (start < end) {
-        mid = (start + end) / 2;
-        if (cmp(d[mid], key) < 0) {
+        mid = start + (end - start) / 2;
+        int result = cmp(d[mid], key);
+        if (result < 0) {
             start = mid+1;
-        } else if (cmp(d[mid], key) > 0) {
+        } else if (result > 0) {
             end = mid;
         } else 
             return mid;
