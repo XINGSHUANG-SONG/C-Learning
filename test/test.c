@@ -7,21 +7,18 @@ typedef struct{
     char *msg;
 }unit_t;
 
-int alloc_unit(unit_t **out){
-    if (out == NULL)
-        return -1;
+unit_t *alloc_unit(void){
     unit_t *temp = malloc(sizeof *temp);
     if (temp == NULL)
-        return -1;
-    temp -> msg = malloc(20);
-    if (temp -> msg == NULL) {
+        return NULL;
+    temp->msg = malloc(20);
+    if (temp->msg == NULL) {
         free(temp);
-        return -1;
+        return NULL;
     }
-    temp -> number = 3;
+    temp->number = 3;
     strcpy(temp->msg, "Hello World!");
-    *out = temp;
-    return 0;
+    return temp;
 }
 
 void free_unit(unit_t *p){
