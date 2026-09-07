@@ -13,19 +13,17 @@ int cmp_int(const void *a, const void *b){
 
 int binarysearch(void *d[], int num, const void *key, cmp_t cmp){
     int start = 0, end = num;
-    int mid = (start + end) / 2;
-    while (d[mid] != key) {
+    int mid;
+    while (start < end) {
         mid = (start + end) / 2;
         if (cmp(d[mid], key) < 0) {
-            start = mid;
+            start = mid+1;
         } else if (cmp(d[mid], key) > 0) {
             end = mid;
         } else 
             return mid;
-        if (start == end)
-            return -1;
     }
-    return mid;
+    return -1;
 }
 
 int main(void){
@@ -37,8 +35,14 @@ int main(void){
         &values[3], 
         &values[4]
     };
-    int a = 2;
-    void *key = &a;
-    printf("%d", binarysearch(data, 5, key, cmp_int));
+    int a;
+    while (1) {
+        if (scanf("%d", &a) != 1) {
+            printf("Invalid Input.\n");
+            return 1;
+        }
+        void *key = &a;
+        printf("%d\n", binarysearch(data, 5, key, cmp_int));
+    }
     return 0;
 }
